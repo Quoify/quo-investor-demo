@@ -342,7 +342,7 @@ export default function DemoPage() {
   const [arv,   setArv]   = useState(BASE_ARV);
   const [sqft,  setSqft]  = useState(BASE_SQFT);
   const [baths, setBaths] = useState(BASE_BATHS);
-  const [zip, setZip] = useState<keyof typeof ZIP_INDEX>("946");
+  const [zip, setZip] = useState<keyof typeof ZIP_INDEX>("946" as keyof typeof ZIP_INDEX);
   const [tier,  setTier]  = useState("Mid");
   const [agentFee,   setAgentFee]   = useState(DEFAULT_AGENT_FEE);
   const [closingFee, setClosingFee] = useState(DEFAULT_CLOSING_FEE);
@@ -379,7 +379,7 @@ const adjustedPurchase = Math.round(
   BASE_PURCHASE * (1 - entry.discount) + entry.fee
 );
   const finalPurchase    = purchaseOverride !== null ? purchaseOverride : adjustedPurchase;
-  const zipInfo          = ZIP_INDEX[zip];
+  const zipInfo = ZIP_INDEX[zip as keyof typeof ZIP_INDEX];
   const laborMultiplier  = zipInfo.idx * TIER_MULT[tier];
   const effectiveRate    = laborMultiplier;
   const sellingCost      = (agentFee + closingFee) / 100;
