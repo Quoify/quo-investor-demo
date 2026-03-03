@@ -354,7 +354,7 @@ export default function DemoPage() {
   const [checked, setChecked] = useState(defaultChecked);
   const [holdMonths, setHoldMonths] = useState(6);
 
-  function loadSample(deal) {
+  function loadSample(deal: any) {
     setAddress(deal.address);
     setEntryKey(deal.entryKey);
     setPurchaseOverride(deal.purchaseOverride);
