@@ -343,7 +343,7 @@ export default function DemoPage() {
   const [sqft,  setSqft]  = useState(BASE_SQFT);
   const [baths, setBaths] = useState(BASE_BATHS);
   const [zip, setZip] = useState<keyof typeof ZIP_INDEX>("946" as keyof typeof ZIP_INDEX);
-  const [tier,  setTier]  = useState("Mid");
+  const [tier, setTier] = useState<keyof typeof TIER_MULT>("Mid" as keyof typeof TIER_MULT);
   const [agentFee,   setAgentFee]   = useState(DEFAULT_AGENT_FEE);
   const [closingFee, setClosingFee] = useState(DEFAULT_CLOSING_FEE);
 
@@ -361,8 +361,8 @@ export default function DemoPage() {
     setArv(deal.arv);
     setSqft(deal.sqft);
     setBaths(deal.baths);
-    setZip(deal.zip);
-    setTier(deal.tier);
+    setZip(deal.zip as keyof typeof ZIP_INDEX);
+    setTier(deal.tier as keyof typeof TIER_MULT);
     const newChecked = Object.fromEntries(LINE_DEFS.map(d => [d.key, deal.checked.includes(d.key)]));
     newChecked["contingency"] = deal.checked.includes("contingency");
     setChecked(newChecked);
