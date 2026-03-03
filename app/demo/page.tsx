@@ -306,7 +306,21 @@ function MetricCard({
   );
 }
 
-function SummaryRow({ label, value, sub, bold, plain, valueColor }) {
+function SummaryRow({
+  label,
+  value,
+  sub,
+  bold,
+  plain,
+  valueColor,
+}: {
+  label: string;
+  value: string | number;
+  sub?: string;
+  bold?: boolean;
+  plain?: boolean;
+  valueColor?: string;
+}) {
   return (
     <div className={`flex justify-between items-center px-4 py-3 ${bold ? "bg-gray-50" : "bg-white"}`}>
       <div>
