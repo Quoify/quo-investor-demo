@@ -380,7 +380,8 @@ const adjustedPurchase = Math.round(
 );
   const finalPurchase    = purchaseOverride !== null ? purchaseOverride : adjustedPurchase;
   const zipInfo = ZIP_INDEX[zip as keyof typeof ZIP_INDEX];
-  const laborMultiplier  = zipInfo.idx * TIER_MULT[tier];
+  const laborMultiplier =
+  zipInfo.idx * TIER_MULT[tier as keyof typeof TIER_MULT];
   const effectiveRate    = laborMultiplier;
   const sellingCost      = (agentFee + closingFee) / 100;
 
