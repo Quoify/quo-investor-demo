@@ -369,8 +369,15 @@ export default function DemoPage() {
     setScreen(4);
   }
 
-  const entry            = ENTRY_PATHS.find((e) => e.key === entryKey);
-  const adjustedPurchase = Math.round(BASE_PURCHASE * (1 - entry.discount) + entry.fee);
+  const entry = ENTRY_PATHS.find((e) => e.key === entryKey);
+
+if (!entry) {
+  return null;
+}
+
+const adjustedPurchase = Math.round(
+  BASE_PURCHASE * (1 - entry.discount) + entry.fee
+);
   const finalPurchase    = purchaseOverride !== null ? purchaseOverride : adjustedPurchase;
   const zipInfo          = ZIP_INDEX[zip];
   const laborMultiplier  = zipInfo.idx * TIER_MULT[tier];
