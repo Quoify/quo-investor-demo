@@ -342,7 +342,7 @@ export default function DemoPage() {
   const [arv,   setArv]   = useState(BASE_ARV);
   const [sqft,  setSqft]  = useState(BASE_SQFT);
   const [baths, setBaths] = useState(BASE_BATHS);
-  const [zip,   setZip]   = useState("946");
+  const [zip, setZip] = useState<keyof typeof ZIP_INDEX>("946");
   const [tier,  setTier]  = useState("Mid");
   const [agentFee,   setAgentFee]   = useState(DEFAULT_AGENT_FEE);
   const [closingFee, setClosingFee] = useState(DEFAULT_CLOSING_FEE);
