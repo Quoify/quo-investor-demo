@@ -286,7 +286,17 @@ function ScreenHdr({ sub }: { sub: string }) {
   );
 }
 
-function MetricCard({ label, value, sub, valueColor = "text-gray-900" }) {
+function MetricCard({
+  label,
+  value,
+  sub,
+  valueColor = "text-gray-900",
+}: {
+  label: string;
+  value: string | number;
+  sub?: string;
+  valueColor?: string;
+}) {
   return (
     <div className="bg-gray-50 rounded-xl border border-gray-200 p-4 text-center">
       <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1.5">{label}</p>
