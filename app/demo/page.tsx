@@ -372,7 +372,7 @@ export default function DemoPage() {
   const entry = ENTRY_PATHS.find((e) => e.key === entryKey);
 
 if (!entry) {
-  return null;
+  throw new Error("Invalid entry key");
 }
 
 const adjustedPurchase = Math.round(
