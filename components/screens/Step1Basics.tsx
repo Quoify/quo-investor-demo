@@ -141,16 +141,17 @@ export function Step1Basics({ deal, dispatch, onContinue }: Step1Props) {
           <label>ZIP Code</label>
 <input
   type="number"
-  value={zip}
-  onChange={(e) => setZip(e.target.value)}
+  value={basics.zip ?? ""}
+  onChange={(e) => update({ zip: e.target.value })}
 />
-
+         
 <label>Square Footage</label>
 <input
   type="number"
-  value={sqft}
-  onChange={(e) => setSqft(Number(e.target.value))}
+  value={basics.sqft ?? 0}
+  onChange={(e) => update({ sqft: Number(e.target.value) })}
 />
+   
         </div>
       </div>
     </StepShell>

@@ -71,6 +71,8 @@ export interface QuoDeal {
     purchaseContext: PurchaseContext
     askingPrice: number | null
     estimatedARV: number | null
+    zip?: string | null
+sqft?: number | null
   }
 
   condition: {
