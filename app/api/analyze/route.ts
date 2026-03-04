@@ -23,8 +23,9 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({
-      text: message.content[0]?.text || "",
+      text: (message.content[0] as any)?.text || "",
     });
+
   } catch (error) {
     return NextResponse.json(
       { error: "AI request failed." },
