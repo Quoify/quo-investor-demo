@@ -824,27 +824,24 @@ Please provide a concise, expert analysis in 3 short sections:
 
 Keep each section to 2-3 sentences. Be direct. No fluff. Write like a trusted advisor, not a brochure.`;
 
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": ANTHROPIC_API_KEY,
-          "anthropic-version": "2023-06-01",
-          "anthropic-dangerous-direct-browser-access": "true",
-        },
-        body: JSON.stringify({
-          model: "claude-haiku-4-5-20251001",
-          max_tokens: 600,
-          messages: [{ role: "user", content: prompt }],
-        }),
-      });
+   const response = await fetch("/api/analyze", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ prompt }),
+});
 
-      const data = await response.json();
-      if (data?.content?.[0]?.text) {
-        setAiAnalysis(data.content[0].text);
-      } else {
-        setAiError("No response received. Check your API key and credits.");
-      }
+const data = await response.json();
+
+if (data.text) {
+  setAiAnalysis(data.text);
+} else {
+  setAiError("No response from AI.");
+}   
+    
+    
+      
     } catch (err) {
       setAiError("Could not connect to AI. Check your API key is set correctly.");
     } finally {
