@@ -5,3 +5,4 @@ node_modules
 AppData
 NTUSER.DAT*
 .DS_Store
+.env.local
