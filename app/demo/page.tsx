@@ -442,26 +442,40 @@ const adjustedPurchase = Math.round(
               className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-blue-600 transition-colors">
               Next: {screens[screen + 1]} →
             </button>
-          ) : (
+          ) : address ? (
             <a href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address)}&module_type=fix_flip`}
               target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-700 transition-colors">
               Proceed to Offer Blueprint →
             </a>
+          ) : (
+            <span className="text-xs text-gray-300">Enter address on Step 2 to proceed →</span>
           )}
         </div>
 
         <div className="px-8 pt-7 pb-5 border-b border-gray-100">
           <div className="flex items-center justify-between mb-4">
-            <button onClick={() => setScreen(0)} className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ backgroundColor: "#155EEF" }}>
-                <span className="text-white font-black text-base tracking-tight">Q</span>
-              </div>
-              <div className="text-left">
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest leading-none mb-0.5">Quo</p>
-                <h1 className="text-lg font-bold text-gray-900 leading-tight group-hover:text-blue-600 transition-colors">Fix &amp; Flip Evaluator</h1>
-              </div>
-            </button>
+            {screen === 0 ? (
+              <a href="https://quo-os.vercel.app" className="flex items-center gap-3 group">
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ backgroundColor: "#155EEF" }}>
+                  <span className="text-white font-black text-base tracking-tight">Q</span>
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest leading-none mb-0.5">Quo</p>
+                  <h1 className="text-lg font-bold text-gray-900 leading-tight group-hover:text-blue-600 transition-colors">Fix &amp; Flip Evaluator</h1>
+                </div>
+              </a>
+            ) : (
+              <button onClick={() => setScreen(0)} className="flex items-center gap-3 group">
+                <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ backgroundColor: "#155EEF" }}>
+                  <span className="text-white font-black text-base tracking-tight">Q</span>
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest leading-none mb-0.5">Quo</p>
+                  <h1 className="text-lg font-bold text-gray-900 leading-tight group-hover:text-blue-600 transition-colors">Fix &amp; Flip Evaluator</h1>
+                </div>
+              </button>
+            )}
             <div className="text-right">
               <p className="text-xs text-gray-400">California Residential · 1–4 Units</p>
             </div>
@@ -894,6 +908,22 @@ if (data.text) {
 
   return (
     <>
+      {/* Next → at top of Results */}
+      <div className="flex justify-end -mt-2 mb-4">
+        {address ? (
+          <a
+            href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address)}&module_type=fix_flip`}
+            target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-sm font-bold text-white shadow-sm transition-opacity hover:opacity-90"
+            style={{ backgroundColor: "#155EEF" }}
+          >
+            Next: Offer Blueprint →
+          </a>
+        ) : (
+          <span className="text-xs text-gray-400 italic self-center">Enter address on Step 2 to proceed to Offer Blueprint</span>
+        )}
+      </div>
+
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="text-xl font-semibold text-gray-800 leading-snug">Review returns based on your assumptions.</h2>
@@ -1176,15 +1206,21 @@ if (data.text) {
 
       {/* Primary action buttons */}
       <div className="flex flex-col gap-3 pt-2">
-        <a
-          href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address || "")}&module_type=fix_flip`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full py-3.5 rounded-xl text-sm font-bold text-white text-center shadow-md transition-opacity hover:opacity-90"
-          style={{ backgroundColor: "#155EEF" }}
-        >
-          Proceed to Offer Blueprint →
-        </a>
+        {address ? (
+          <a
+            href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address)}&module_type=fix_flip`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-3.5 rounded-xl text-sm font-bold text-white text-center shadow-md transition-opacity hover:opacity-90"
+            style={{ backgroundColor: "#155EEF" }}
+          >
+            Proceed to Offer Blueprint →
+          </a>
+        ) : (
+          <div className="w-full py-3.5 rounded-xl text-sm font-semibold text-center text-gray-400 bg-gray-100 border border-dashed border-gray-300">
+            Enter a property address on Step 2 to proceed to Offer Blueprint
+          </div>
+        )}
         <button
           onClick={onReset}
           className="w-full py-3 rounded-xl text-sm font-semibold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
