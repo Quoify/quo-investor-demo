@@ -421,21 +421,33 @@ const adjustedPurchase = Math.round(
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl border border-gray-100 w-full max-w-2xl overflow-hidden">
 
-        {/* Fixed top back button — visible on long screens */}
-        {screen > 0 && (
-          <div className="px-8 py-2 bg-white border-b border-gray-100 flex items-center gap-3">
-            <button onClick={() => setScreen((s) => s - 1)}
-              className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-blue-600 transition-colors">
-              ← Back to {screens[screen - 1]}
-            </button>
-            {address && <span className="text-xs text-gray-400 truncate">· {address}</span>}
+        {/* Top navigation strip — always visible */}
+        <div className="px-8 py-2 bg-white border-b border-gray-100 flex items-center justify-between min-h-[36px]">
+          <div className="flex items-center gap-3">
+            {screen > 0 ? (
+              <button onClick={() => setScreen((s) => s - 1)}
+                className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-blue-600 transition-colors">
+                ← Back to {screens[screen - 1]}
+              </button>
+            ) : (
+              <span className="text-xs text-gray-300">Step 1 of {screens.length}</span>
+            )}
+            {address && screen > 0 && <span className="text-xs text-gray-400 truncate max-w-xs">· {address}</span>}
           </div>
-        )}
+          {!isLast && (
+            <button onClick={() => setScreen((s) => s + 1)}
+              className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-blue-600 transition-colors">
+              Next: {screens[screen + 1]} →
+            </button>
+          )}
+        </div>
 
         <div className="px-8 pt-7 pb-5 border-b border-gray-100">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 leading-tight">Deal Evaluator</h1>
+              <button onClick={() => setScreen(0)} className="text-left group">
+                <h1 className="text-2xl font-bold text-gray-900 leading-tight group-hover:text-blue-600 transition-colors cursor-pointer">Deal Evaluator</h1>
+              </button>
             </div>
             <div className="text-right">
               <p className="text-xs text-gray-400">California Residential · 1–4 Units</p>
@@ -715,6 +727,7 @@ const adjustedPurchase = Math.round(
               agentFee={agentFee} setAgentFee={setAgentFee}
               closingFee={closingFee} setClosingFee={setClosingFee}
               sellingCost={sellingCost} address={address}
+              onReset={reset}
             />
           )}
         </div>
@@ -733,7 +746,7 @@ const adjustedPurchase = Math.round(
           ) : (
             <button onClick={reset}
               className="px-6 py-2 rounded-lg text-sm font-semibold text-white bg-slate-800 hover:bg-slate-900 transition-colors shadow-sm">
-              New Analysis
+              Analyze Another Property
             </button>
           )}
         </div>
@@ -748,7 +761,7 @@ function ResultsScreen({
   entry, finalPurchase, arv, rehabCost, totalInvested,
   netProceeds, profit, holdMonths, setHoldMonths,
   tier, zip, checked, flipIRR, irrColor, profitColor,
-  agentFee, setAgentFee, closingFee, setClosingFee, sellingCost, address
+  agentFee, setAgentFee, closingFee, setClosingFee, sellingCost, address, onReset
 }) {
   const [useLoan, setUseLoan] = useState(false);
   const [downPct, setDownPct] = useState(25);
@@ -1139,6 +1152,25 @@ if (data.text) {
             <p className="text-xs text-blue-400 mt-4">Analysis based on your current inputs · Refresh after changing assumptions</p>
           </div>
         )}
+      </div>
+
+      {/* Primary action buttons */}
+      <div className="flex flex-col gap-3 pt-2">
+        <a
+          href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address || "")}&module_type=fix_flip`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full py-3.5 rounded-xl text-sm font-bold text-white text-center shadow-md transition-opacity hover:opacity-90"
+          style={{ backgroundColor: "#155EEF" }}
+        >
+          Proceed to Offer Blueprint →
+        </a>
+        <button
+          onClick={onReset}
+          className="w-full py-3 rounded-xl text-sm font-semibold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
+        >
+          Analyze Another Property
+        </button>
       </div>
 
       <p className="text-xs text-gray-400 text-center">
