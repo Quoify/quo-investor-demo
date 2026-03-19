@@ -111,11 +111,15 @@ function OfferBlueprintForm() {
           <div className="flex items-center justify-between mb-1">
             <button
               onClick={() => router.push("/demo")}
-              className="text-left group"
+              className="flex items-center gap-3 group"
             >
-              <h1 className="text-2xl font-bold text-gray-900 leading-tight group-hover:text-blue-600 transition-colors cursor-pointer">
-                Deal Evaluator
-              </h1>
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ backgroundColor: "#155EEF" }}>
+                <span className="text-white font-black text-base tracking-tight">Q</span>
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest leading-none mb-0.5">Quo</p>
+                <h1 className="text-lg font-bold text-gray-900 leading-tight group-hover:text-blue-600 transition-colors">Fix &amp; Flip Evaluator</h1>
+              </div>
             </button>
             <p className="text-xs text-gray-400">Offer Blueprint</p>
           </div>
