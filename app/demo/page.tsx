@@ -1204,8 +1204,7 @@ if (data.text) {
       <div className="flex flex-col gap-3 pt-2">
         <a
           href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address)}&module_type=fix_flip`}
-          target="_blank"
-          rel="noopener noreferrer"
+          target="_self"
           className="w-full py-3.5 rounded-xl text-sm font-bold text-white text-center shadow-md transition-opacity hover:opacity-90"
           style={{ backgroundColor: "#155EEF" }}
         >
