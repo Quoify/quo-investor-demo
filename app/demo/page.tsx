@@ -449,7 +449,7 @@ const adjustedPurchase = Math.round(
               Proceed to Offer Blueprint →
             </a>
           ) : (
-            <span className="text-xs text-gray-300">Enter address on Step 2 to proceed →</span>
+            <span className="text-xs font-semibold text-amber-600">Please enter a property address to continue</span>
           )}
         </div>
 
@@ -920,7 +920,7 @@ if (data.text) {
             Next: Offer Blueprint →
           </a>
         ) : (
-          <span className="text-xs text-gray-400 italic self-center">Enter address on Step 2 to proceed to Offer Blueprint</span>
+          <span className="text-sm font-semibold text-amber-600">Please enter a property address to continue</span>
         )}
       </div>
 
@@ -1217,8 +1217,8 @@ if (data.text) {
             Proceed to Offer Blueprint →
           </a>
         ) : (
-          <div className="w-full py-3.5 rounded-xl text-sm font-semibold text-center text-gray-400 bg-gray-100 border border-dashed border-gray-300">
-            Enter a property address on Step 2 to proceed to Offer Blueprint
+          <div className="w-full py-3.5 rounded-xl text-sm font-semibold text-center text-amber-700 bg-amber-50 border border-amber-200">
+            Please enter a property address to continue
           </div>
         )}
         <button
