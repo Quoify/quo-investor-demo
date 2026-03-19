@@ -5,44 +5,6 @@ import { StepShell } from "@/components/ui/StepShell";
 import { ToggleGroup } from "@/components/ui/ToggleGroup";
 import { NumberInput } from "@/components/ui/NumberInput";
 
-const SUPPORTED_MARKETS = [
-  { prefix: "900", label: "Los Angeles" },
-  { prefix: "902", label: "Compton / South LA" },
-  { prefix: "904", label: "Inglewood" },
-  { prefix: "907", label: "Long Beach" },
-  { prefix: "910", label: "Pasadena / Alhambra" },
-  { prefix: "913", label: "San Fernando Valley" },
-  { prefix: "917", label: "San Bernardino" },
-  { prefix: "919", label: "San Diego North" },
-  { prefix: "920", label: "San Diego East" },
-  { prefix: "921", label: "San Diego Central" },
-  { prefix: "923", label: "Inland Empire East" },
-  { prefix: "925", label: "Riverside" },
-  { prefix: "930", label: "Ventura County" },
-  { prefix: "931", label: "Santa Barbara" },
-  { prefix: "932", label: "Bakersfield" },
-  { prefix: "934", label: "San Luis Obispo" },
-  { prefix: "936", label: "Fresno" },
-  { prefix: "937", label: "Fresno South" },
-  { prefix: "939", label: "Monterey" },
-  { prefix: "940", label: "Peninsula / Daly City" },
-  { prefix: "941", label: "San Francisco" },
-  { prefix: "945", label: "East Bay / Fremont" },
-  { prefix: "946", label: "Oakland" },
-  { prefix: "949", label: "Marin County" },
-  { prefix: "950", label: "San Jose" },
-  { prefix: "951", label: "San Jose South" },
-  { prefix: "952", label: "Stockton" },
-  { prefix: "953", label: "Modesto" },
-  { prefix: "954", label: "Sonoma County" },
-  { prefix: "956", label: "Sacramento North" },
-  { prefix: "957", label: "Sacramento Central" },
-  { prefix: "958", label: "Sacramento East" },
-  { prefix: "959", label: "Chico / Yuba City" },
-  { prefix: "960", label: "Redding" },
-  { prefix: "966", label: "Placer County" },
-];
-
 const CA_COUNTIES = [
   "Alameda", "Alpine", "Amador", "Butte", "Calaveras", "Colusa",
   "Contra Costa", "Del Norte", "El Dorado", "Fresno", "Glenn", "Humboldt",
@@ -177,19 +139,14 @@ export function Step1Basics({ deal, dispatch, onContinue }: Step1Props) {
             optional
           />
           <div className="space-y-1">
-            <label className="text-xs text-slate-500">Market (ZIP prefix)</label>
-            <select
+            <label className="text-xs text-slate-500">ZIP Code</label>
+            <input
+              type="text"
               value={basics.zip ?? ""}
               onChange={(e) => update({ zip: e.target.value })}
-              className="px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900 w-48"
-            >
-              <option value="">Select market</option>
-              {SUPPORTED_MARKETS.map((m) => (
-                <option key={m.prefix} value={m.prefix}>
-                  {m.prefix} — {m.label}
-                </option>
-              ))}
-            </select>
+              placeholder="e.g. 90011"
+              className="px-3 py-2 text-sm border border-slate-200 rounded-lg bg-white text-slate-900 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-900 w-48"
+            />
           </div>
          
 <label>Square Footage</label>

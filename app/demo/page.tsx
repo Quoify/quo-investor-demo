@@ -76,11 +76,45 @@ const ENTRY_PATHS = [
 ];
 
 const ZIP_INDEX = {
-  "941": { label: "San Francisco", idx: 1.35 },
-  "946": { label: "Oakland",       idx: 1.15 },
-  "900": { label: "Los Angeles",   idx: 1.25 },
-  "921": { label: "San Diego",     idx: 1.10 },
-  "958": { label: "Sacramento",    idx: 0.95 },
+  // Southern California
+  "900": { label: "Los Angeles",          idx: 1.25 },
+  "902": { label: "Compton / South LA",   idx: 1.20 },
+  "904": { label: "Inglewood",            idx: 1.22 },
+  "907": { label: "Long Beach",           idx: 1.18 },
+  "910": { label: "Pasadena / Alhambra",  idx: 1.20 },
+  "913": { label: "San Fernando Valley",  idx: 1.18 },
+  "917": { label: "San Bernardino",       idx: 1.05 },
+  "919": { label: "San Diego North",      idx: 1.12 },
+  "920": { label: "San Diego East",       idx: 1.10 },
+  "921": { label: "San Diego Central",    idx: 1.10 },
+  "923": { label: "Inland Empire East",   idx: 1.05 },
+  "925": { label: "Riverside",            idx: 1.05 },
+  "930": { label: "Ventura County",       idx: 1.15 },
+  "931": { label: "Santa Barbara",        idx: 1.22 },
+  // Central Coast / Central Valley
+  "932": { label: "Bakersfield",          idx: 0.92 },
+  "934": { label: "San Luis Obispo",      idx: 1.10 },
+  "936": { label: "Fresno",              idx: 0.90 },
+  "937": { label: "Fresno South",         idx: 0.88 },
+  "939": { label: "Monterey",             idx: 1.12 },
+  // Bay Area
+  "940": { label: "Peninsula / Daly City", idx: 1.30 },
+  "941": { label: "San Francisco",        idx: 1.35 },
+  "945": { label: "East Bay / Fremont",   idx: 1.20 },
+  "946": { label: "Oakland",             idx: 1.15 },
+  "949": { label: "Marin County",         idx: 1.35 },
+  "950": { label: "San Jose",             idx: 1.28 },
+  "951": { label: "San Jose South",       idx: 1.22 },
+  "954": { label: "Sonoma County",        idx: 1.15 },
+  // Central Valley / Sacramento
+  "952": { label: "Stockton",             idx: 0.92 },
+  "953": { label: "Modesto",              idx: 0.90 },
+  "956": { label: "Sacramento North",     idx: 0.95 },
+  "957": { label: "Sacramento Central",   idx: 0.95 },
+  "958": { label: "Sacramento East",      idx: 0.95 },
+  "959": { label: "Chico / Yuba City",    idx: 0.88 },
+  "960": { label: "Redding",              idx: 0.85 },
+  "966": { label: "Placer County",        idx: 0.95 },
 };
 
 const TIER_MULT = { Low: 0.9, Mid: 1.0, High: 1.2 };
@@ -600,11 +634,9 @@ const adjustedPurchase = Math.round(
                 <div className="bg-gray-50 border border-gray-100 rounded-xl p-4">
                   <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Market (ZIP Prefix)</label>
                   <select className={inp} value={zip} onChange={(e) => setZip(e.target.value)}>
-                    <option value="941">941 — San Francisco</option>
-                    <option value="946">946 — Oakland</option>
-                    <option value="900">900 — Los Angeles</option>
-                    <option value="921">921 — San Diego</option>
-                    <option value="958">958 — Sacramento</option>
+                    {(Object.entries(ZIP_INDEX) as [string, { label: string; idx: number }][]).map(([prefix, info]) => (
+                      <option key={prefix} value={prefix}>{prefix} — {info.label}</option>
+                    ))}
                   </select>
                   {getOZInfo(zip).inOZ && (
                     <p className="text-xs text-purple-600 font-semibold mt-1.5">⭐ Opportunity Zones present in this market</p>
