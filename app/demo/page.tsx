@@ -430,25 +430,38 @@ const adjustedPurchase = Math.round(
                 ← Back to {screens[screen - 1]}
               </button>
             ) : (
-              <span className="text-xs text-gray-300">Step 1 of {screens.length}</span>
+              <a href="https://quo-os.vercel.app"
+                className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-blue-600 transition-colors">
+                ← Back to Quo OS
+              </a>
             )}
             {address && screen > 0 && <span className="text-xs text-gray-400 truncate max-w-xs">· {address}</span>}
           </div>
-          {!isLast && (
+          {!isLast ? (
             <button onClick={() => setScreen((s) => s + 1)}
               className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-blue-600 transition-colors">
               Next: {screens[screen + 1]} →
             </button>
+          ) : (
+            <a href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address)}&module_type=fix_flip`}
+              target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+              Proceed to Offer Blueprint →
+            </a>
           )}
         </div>
 
         <div className="px-8 pt-7 pb-5 border-b border-gray-100">
           <div className="flex items-center justify-between mb-4">
-            <div>
-              <button onClick={() => setScreen(0)} className="text-left group">
-                <h1 className="text-2xl font-bold text-gray-900 leading-tight group-hover:text-blue-600 transition-colors cursor-pointer">Deal Evaluator</h1>
-              </button>
-            </div>
+            <button onClick={() => setScreen(0)} className="flex items-center gap-3 group">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style={{ backgroundColor: "#155EEF" }}>
+                <span className="text-white font-black text-base tracking-tight">Q</span>
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest leading-none mb-0.5">Quo</p>
+                <h1 className="text-lg font-bold text-gray-900 leading-tight group-hover:text-blue-600 transition-colors">Fix &amp; Flip Evaluator</h1>
+              </div>
+            </button>
             <div className="text-right">
               <p className="text-xs text-gray-400">California Residential · 1–4 Units</p>
             </div>
@@ -733,10 +746,17 @@ const adjustedPurchase = Math.round(
         </div>
 
         <div className="flex justify-between items-center px-8 py-5 border-t border-gray-100 bg-gray-50">
-          <button onClick={() => setScreen((s) => s - 1)} disabled={screen === 0}
-            className="px-5 py-2 rounded-lg text-sm font-semibold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors shadow-sm">
-            ← Back
-          </button>
+          {screen === 0 ? (
+            <a href="https://quo-os.vercel.app"
+              className="px-5 py-2 rounded-lg text-sm font-semibold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm">
+              ← Back
+            </a>
+          ) : (
+            <button onClick={() => setScreen((s) => s - 1)}
+              className="px-5 py-2 rounded-lg text-sm font-semibold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm">
+              ← Back
+            </button>
+          )}
           <span className="text-xs text-gray-400 font-medium">{screen + 1} of {screens.length}</span>
           {!isLast ? (
             <button onClick={() => setScreen((s) => s + 1)}
