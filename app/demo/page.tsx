@@ -910,18 +910,14 @@ if (data.text) {
     <>
       {/* Next → at top of Results */}
       <div className="flex justify-end -mt-2 mb-4">
-        {address ? (
-          <a
-            href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address)}&module_type=fix_flip`}
-            target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-sm font-bold text-white shadow-sm transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#155EEF" }}
-          >
-            Next: Offer Blueprint →
-          </a>
-        ) : (
-          <span className="text-sm font-semibold text-amber-600">Please enter a property address to continue</span>
-        )}
+        <a
+          href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address)}&module_type=fix_flip`}
+          target="_blank" rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-sm font-bold text-white shadow-sm transition-opacity hover:opacity-90"
+          style={{ backgroundColor: "#155EEF" }}
+        >
+          Next: Offer Blueprint →
+        </a>
       </div>
 
       <div className="flex items-start justify-between gap-3">
@@ -1206,21 +1202,15 @@ if (data.text) {
 
       {/* Primary action buttons */}
       <div className="flex flex-col gap-3 pt-2">
-        {address ? (
-          <a
-            href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address)}&module_type=fix_flip`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full py-3.5 rounded-xl text-sm font-bold text-white text-center shadow-md transition-opacity hover:opacity-90"
-            style={{ backgroundColor: "#155EEF" }}
-          >
-            Proceed to Offer Blueprint →
-          </a>
-        ) : (
-          <div className="w-full py-3.5 rounded-xl text-sm font-semibold text-center text-amber-700 bg-amber-50 border border-amber-200">
-            Please enter a property address to continue
-          </div>
-        )}
+        <a
+          href={`https://quo-os.vercel.app/offer-blueprint?address=${encodeURIComponent(address)}&module_type=fix_flip`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full py-3.5 rounded-xl text-sm font-bold text-white text-center shadow-md transition-opacity hover:opacity-90"
+          style={{ backgroundColor: "#155EEF" }}
+        >
+          Proceed to Offer Blueprint →
+        </a>
         <button
           onClick={onReset}
           className="w-full py-3 rounded-xl text-sm font-semibold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 transition-colors"
